@@ -1,0 +1,185 @@
+/*
+ * Components
+ */
+.intro-image {
+  display: block;
+}
+
+.section-left-with-chevron {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 0.2fr) minmax(12rem, 0.9fr) minmax(0, 1.5fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  min-height: 28rem;
+  isolation: isolate;
+}
+
+.section-left-with-chevron:not(.has-label) {
+  grid-template-columns: minmax(12rem, 0.9fr) minmax(0, 1.5fr);
+}
+
+.section-left-with-chevron::after {
+  position: absolute;
+  z-index: 0;
+  right: -0.08em;
+  bottom: -0.2em;
+  color: var(--theme-color-primary);
+  content: "›";
+  font-family: var(--theme-font-body);
+  font-size: clamp(12rem, 27vw, 24rem);
+  font-weight: 700;
+  line-height: 0.8;
+  pointer-events: none;
+}
+
+.section-left-with-chevron__label {
+  position: relative;
+  z-index: 1;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--theme-color-black);
+  padding: 1rem 0.75rem;
+}
+
+.section-left-with-chevron__label h1 {
+  margin: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: clamp(1.75rem, 3.2vw, 4rem);
+  font-weight: 700;
+  line-height: 0.9;
+}
+
+.section-left-with-chevron__image img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.section-left-with-chevron__content {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  padding-top: clamp(1rem, 3vw, 3rem);
+}
+
+.section-left-with-chevron__title {
+  margin-bottom: 1.25rem;
+  font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.section-left-with-chevron__subtitle {
+  margin-bottom: 2rem;
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767.98px) {
+  .section-left-with-chevron {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    min-height: 0;
+  }
+
+  .section-left-with-chevron:not(.has-label) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section-left-with-chevron__label {
+    justify-content: flex-start;
+    border-right: 0;
+    border-bottom: 1px solid var(--theme-color-black);
+    padding: 0 0 0.75rem;
+  }
+
+  .section-left-with-chevron__label h1 {
+    writing-mode: initial;
+    transform: none;
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+
+  .section-left-with-chevron__image img {
+    max-height: 30rem;
+  }
+
+  .section-left-with-chevron__content {
+    padding-top: 0;
+    padding-bottom: 2rem;
+  }
+
+  .section-left-with-chevron::after {
+    right: -0.1em;
+    bottom: -0.15em;
+    font-size: 12rem;
+  }
+}
+
+/*** Button ***/
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0;
+}
+
+.btn-primary {
+  border: 2px solid var(--theme-color-white);
+  border-right: 2px solid var(--theme-color-primary);
+  border-bottom: 2px solid var(--theme-color-primary);
+  background: var(--theme-color-white);
+  color: var(--theme-color-black);
+  --bs-btn-hover-color: var(--theme-color-black);
+  --bs-btn-hover-bg: var(--theme-color-white);
+  --bs-btn-hover-border-color: var(--theme-color-white);
+}
+
+.btn-secondary {
+  border: 4px solid var(--theme-color-white);
+  border-right: 4px solid var(--theme-color-primary);
+  border-bottom: 4px solid var(--theme-color-primary);
+  color: var(--theme-color-black);
+  --bs-btn-hover-color: var(--theme-color-black);
+  --bs-btn-hover-bg: var(--theme-color-white);
+  --bs-btn-hover-border-color: var(--theme-color-white);
+}
+
+.btn-primary:hover,
+.btn-primary.active,
+.btn-primary:focus {
+  border-right: 5px solid var(--theme-color-primary);
+  border-bottom: 5px solid var(--theme-color-primary);
+  
+}
+
+.btn-secondary:hover,
+.btn-secondary.active,
+.btn-secondary:focus {
+  border-right: 5px solid var(--theme-color-primary);
+  border-bottom: 5px solid var(--theme-color-primary);
+}
+
+
+/*** Image Slider ***/
+
+.projecttheme-image-slider .carousel-inner {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.projecttheme-image-slider .carousel-item,
+.projecttheme-image-slider .carousel-item img {
+  height: 100%;
+}
+
+.projecttheme-image-slider .carousel-item img {
+  object-fit: cover;
+}
