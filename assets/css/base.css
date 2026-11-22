@@ -25,8 +25,8 @@ h1 {
 }
 h2 {
   font-family: var(--theme-font-body);
-  font-weight: 400;
 }
 h3 {
   font-family: var(--theme-font-body);
+  margin-bottom: -1.2rem;
 }

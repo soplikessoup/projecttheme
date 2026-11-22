@@ -15,7 +15,42 @@
   <header id="masthead" class="site-header">
     <div class="site-branding">
       <?php get_template_part( 'template-parts/components/logo' ); ?>
+      <?php
+      $language_links = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => 0 ) );
+      if ( ! is_array( $language_links ) && function_exists( 'pll_the_languages' ) ) {
+        $language_links = pll_the_languages( array( 'raw' => 1, 'hide_if_empty' => 0 ) );
+      }
+      $site_languages = array();
 
+      if ( is_array( $language_links ) ) {
+        foreach ( $language_links as $language ) {
+          $language_code = strtoupper( substr( $language['language_code'] ?? $language['slug'] ?? '', 0, 2 ) );
+          $language_url  = $language['url'] ?? '';
+
+          if ( in_array( $language_code, array( 'EN', 'DE' ), true ) && $language_url ) {
+            $site_languages[] = array(
+              'code'    => $language_code,
+              'url'     => $language_url,
+              'current' => ! empty( $language['active'] ) || ! empty( $language['current_lang'] ),
+            );
+          }
+        }
+      }
+      ?>
+      <nav class="site-language-switch" aria-label="<?php esc_attr_e( 'Language', 'textdomaintomodify' ); ?>">
+        <?php if ( $site_languages ) : ?>
+          <?php foreach ( $site_languages as $index => $language ) : ?>
+            <?php if ( $index > 0 ) : ?><span aria-hidden="true">/</span><?php endif; ?>
+            <a href="<?php echo esc_url( $language['url'] ); ?>"
+               hreflang="<?php echo esc_attr( strtolower( $language['code'] ) ); ?>"
+               <?php if ( $language['current'] ) : ?>aria-current="page"<?php endif; ?>>
+              <?php echo esc_html( $language['code'] ); ?>
+            </a>
+          <?php endforeach; ?>
+        <?php else : ?>
+          <span>EN/DE</span>
+        <?php endif; ?>
+      </nav>
     </div><!-- .site-branding -->
 
     <nav id="site-navigation" class="main-navigation">

@@ -9,14 +9,7 @@ function projecttheme_enqueue_assets() {
 
 	$bootstrap_css = $theme_path . '/assets/css/bootstrap.min.css';
 	$bootstrap_js  = $theme_path . '/assets/js/bootstrap.bundle.min.js';
-	$theme_css     = $theme_path . '/assets/css/theme.css';
 	$theme_js      = $theme_path . '/assets/js/main.js';
-	$theme_styles  = glob( $theme_path . '/assets/css/*.css' );
-	$theme_version = $theme_css && file_exists( $theme_css ) ? filemtime( $theme_css ) : null;
-
-	if ( $theme_styles ) {
-		$theme_version = max( array_map( 'filemtime', $theme_styles ) );
-	}
 
 	wp_enqueue_style(
 		'projecttheme-bootstrap-style',
@@ -25,12 +18,32 @@ function projecttheme_enqueue_assets() {
 		file_exists( $bootstrap_css ) ? filemtime( $bootstrap_css ) : null
 	);
 
-	wp_enqueue_style(
-		'projecttheme-theme',
-		$theme_uri . '/assets/css/theme.css',
-		array( 'projecttheme-bootstrap-style' ),
-		$theme_version
+	$theme_styles = array(
+		'constants'   => 'constants.css',
+		'base'        => 'base.css',
+		'typography'  => 'typography.css',
+		'header'      => 'header.css',
+		'menu'        => 'menu.css',
+		'footer'      => 'footer.css',
+		'forms'       => 'forms.css',
+		'components'  => 'components.css',
+		'pages'       => 'pages.css',
 	);
+	$previous_style = 'projecttheme-bootstrap-style';
+
+	foreach ( $theme_styles as $handle => $filename ) {
+		$style_path = $theme_path . '/assets/css/' . $filename;
+		$style_handle = 'projecttheme-' . $handle;
+
+		wp_enqueue_style(
+			$style_handle,
+			$theme_uri . '/assets/css/' . $filename,
+			array( $previous_style ),
+			file_exists( $style_path ) ? filemtime( $style_path ) : null
+		);
+
+		$previous_style = $style_handle;
+	}
 
 	wp_enqueue_script(
 		'projecttheme-bootstrap-script',

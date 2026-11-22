@@ -7,30 +7,30 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  const closeMenu = () => {
-    navigation.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
+  const setMenuOpen = (isOpen) => {
+    navigation.classList.toggle('is-open', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
   };
 
   toggle.addEventListener('click', () => {
-    const isOpen = navigation.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(isOpen));
+    setMenuOpen(!navigation.classList.contains('is-open'));
   });
 
   menu.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', () => setMenuOpen(false));
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closeMenu();
+    if (event.key === 'Escape' && navigation.classList.contains('is-open')) {
+      setMenuOpen(false);
       toggle.focus();
     }
   });
 
   window.addEventListener('resize', () => {
     if (window.matchMedia('(min-width: 768px)').matches) {
-      closeMenu();
+      setMenuOpen(false);
     }
   });
 });

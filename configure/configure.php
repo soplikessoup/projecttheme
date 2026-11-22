@@ -11,6 +11,23 @@ function _custom_theme_register_menu() {
 }
 add_action( 'init', '_custom_theme_register_menu' );
 
+function projecttheme_main_menu_primary_visit_link( $atts, $item, $args ) {
+    if (
+        'menu-main' !== ( $args->theme_location ?? '' ) ||
+        1 !== (int) $item->menu_order ||
+        0 !== (int) $item->menu_item_parent
+    ) {
+        return $atts;
+    }
+
+    $classes   = explode( ' ', $atts['class'] ?? '' );
+    $classes[] = 'btn-primary';
+    $atts['class'] = implode( ' ', array_unique( array_filter( $classes ) ) );
+
+    return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'projecttheme_main_menu_primary_visit_link', 10, 3 );
+
 function custom_setup() {
     // Images
     add_theme_support( 'post-thumbnails' );

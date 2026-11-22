@@ -7,16 +7,19 @@ Speichern und Neuladen direkt verwendet.
 
 ## Dateien bearbeiten
 
-- `assets/css/theme.css` ist der zentrale Einstiegspunkt für die eigenen Styles.
-- Die bearbeitbaren CSS-Bereiche liegen getrennt in `assets/css/`: `constants.css`,
+- Die bearbeitbaren CSS-Bereiche liegen getrennt in `assets/css/`. WordPress
+  bindet sie einzeln und in definierter Reihenfolge ein, damit Änderungen an
+  jeder Datei einen eigenen Cache-Buster erhalten. `theme.css` bleibt als
+  manuell nutzbares Import-Bundle erhalten.
+- Die Bereiche sind: `constants.css`,
   `base.css`, `typography.css`, `header.css`, `menu.css`, `footer.css`,
   `forms.css`, `components.css` und `pages.css`.
 - `assets/css/bootstrap.min.css` ist die lokale, an die ursprünglichen
   Theme-Variablen angepasste Bootstrap-5-Datei.
 - `assets/js/main.js` ist der zentrale JavaScript-Einstiegspunkt und importiert
   weitere eigene Module wie `menu.js`.
-- `configure/js-css.php` bindet die Dateien in der richtigen Reihenfolge ein und
-  verwendet die Änderungszeit als Version.
+- `configure/js-css.php` bindet die CSS-Dateien in der richtigen Reihenfolge ein
+  und verwendet die Änderungszeit jeder Datei als Version.
 - PHP-Templates, `templates/`, `acf-json/` und die Dateien in `configure/` bleiben
   die Arbeitsbereiche für Markup, ACF und WordPress-Funktionen.
 

@@ -8,7 +8,39 @@ if (!function_exists('have_rows') || !have_rows('page_modules')) {
   return;
 }
 
+$publication_group_open = false;
+$publication_group_opts = [];
+$publication_heading_layouts = [
+  'section-heading',
+  'section-publication-with-heading',
+  'section_publication',
+];
+$close_publication_group = function () use (&$publication_group_open, &$publication_group_opts) {
+  if (!$publication_group_open) {
+    return;
+  }
+
+  echo '</div></div>';
+  if (function_exists('section_close')) {
+    section_close($publication_group_opts);
+  } else {
+    if ($publication_group_opts['container'] !== 'none') echo '</div>';
+    echo '</section>';
+  }
+  $publication_group_open = false;
+};
+
 while (have_rows('page_modules')) : the_row();
+  $layout = get_row_layout();
+
+  if ($publication_group_open && $layout !== 'section-publication') {
+    $close_publication_group();
+  }
+
+  if ($publication_group_open && $layout === 'section-publication') {
+    get_template_part('template-parts/flex/layout', 'section-publication');
+    continue;
+  }
 
   // Section-Optionen 
   $opts = [
@@ -83,9 +115,48 @@ while (have_rows('page_modules')) : the_row();
 
     case 'section_left_with_chevron':
       get_template_part('template-parts/flex/layout', 'section-left-with-chevron'); break;
+
+    case 'section_right':
+      get_template_part('template-parts/flex/layout', 'section-right'); break;
+
+    case 'section_right_with_chevron':
+      get_template_part('template-parts/flex/layout', 'section-right-with-chevron'); break;
+
+    case 'contact':
+      get_template_part('template-parts/flex/layout', 'contact'); break;
+
+    case 'section-openinghours':
+      get_template_part('template-parts/flex/layout', 'section-openinghours'); break;
+
+    case 'section-mission':
+      get_template_part('template-parts/flex/layout', 'section-mission'); break;
+
+    case 'section-team':
+      get_template_part('template-parts/flex/layout', 'section-team'); break;
+
+    case 'section-members':
+      get_template_part('template-parts/flex/layout', 'section-members'); break;
+
+    case 'section-sponsors':
+      get_template_part('template-parts/flex/layout', 'section-sponsors'); break;
+
+    case 'section-exhibition':
+      get_template_part('template-parts/flex/layout', 'section-exhibition'); break;
+
+    case 'section-heading':
+    case 'section-publication-with-heading':
+    case 'section_publication':
+      get_template_part('template-parts/flex/layout', 'section-heading'); break;
+
+    case 'section-publication':
+      get_template_part('template-parts/flex/layout', 'section-publication'); break;
+
   }
 
-  if (function_exists('section_close')) {
+  if (in_array($opts['name'], $publication_heading_layouts, true)) {
+    $publication_group_open = true;
+    $publication_group_opts = $opts;
+  } elseif (function_exists('section_close')) {
     section_close($opts);
   } else {
     if ($opts['container'] !== 'none') echo '</div>';
@@ -93,3 +164,5 @@ while (have_rows('page_modules')) : the_row();
   }
 
 endwhile;
+
+$close_publication_group();
