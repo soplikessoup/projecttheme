@@ -43,12 +43,14 @@
             <?php if ( $index > 0 ) : ?><span aria-hidden="true">/</span><?php endif; ?>
             <a href="<?php echo esc_url( $language['url'] ); ?>"
                hreflang="<?php echo esc_attr( strtolower( $language['code'] ) ); ?>"
-               <?php if ( $language['current'] ) : ?>aria-current="page"<?php endif; ?>>
+               <?php if ( $language['current'] ) : ?>class="is-current" aria-current="page"<?php endif; ?>>
               <?php echo esc_html( $language['code'] ); ?>
             </a>
           <?php endforeach; ?>
         <?php else : ?>
-          <span>EN/DE</span>
+          <span class="is-current">EN</span>
+          <span aria-hidden="true">/</span>
+          <span>DE</span>
         <?php endif; ?>
       </nav>
     </div><!-- .site-branding -->
