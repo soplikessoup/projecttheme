@@ -67,6 +67,34 @@
   pointer-events: none;
 }
 
+#main > section:first-child .section-left-with-chevron__label::after,
+#main > section:first-child .section-right__label::after,
+#main > section:first-child .section-right-with-chevron__label::after,
+#main > section:first-child .contact-module__label::after,
+#main > section:first-child .section-openinghours__label::after,
+#main > section:first-child .section-mission__label::after,
+#main > section:first-child .section-team__label::after,
+#main > section:first-child .section-members__label::after,
+#main > section:first-child .section-sponsors__label::after,
+#main > section:first-child .section-exhibition__label::after,
+#main > section:first-child .section-publication__label::after {
+  top: -1.2rem;
+}
+
+#main > section:last-child .section-left-with-chevron__label::after,
+#main > section:last-child .section-right__label::after,
+#main > section:last-child .section-right-with-chevron__label::after,
+#main > section:last-child .contact-module__label::after,
+#main > section:last-child .section-openinghours__label::after,
+#main > section:last-child .section-mission__label::after,
+#main > section:last-child .section-team__label::after,
+#main > section:last-child .section-members__label::after,
+#main > section:last-child .section-sponsors__label::after,
+#main > section:last-child .section-exhibition__label::after,
+#main > section:last-child .section-publication__label::after {
+  bottom: -1.2rem;
+}
+
 .section-left-with-chevron__label h1 {
   margin: 0;
   writing-mode: vertical-rl;
@@ -593,7 +621,7 @@
   display: grid;
   grid-template-columns: minmax(4.5rem, 0.2fr) minmax(0, 2.4fr);
   align-items: stretch;
-  min-height: clamp(28rem, 38vw, 34rem);
+  min-height: 28rem;
   isolation: isolate;
 }
 
@@ -630,7 +658,7 @@
   grid-template-rows: auto 1fr;
   column-gap: clamp(1.5rem, 4vw, 3.5rem);
   row-gap: 2rem;
-  padding: clamp(2.5rem, 4vw, 4rem) 0 2rem;
+  padding: clamp(1rem, 3vw, 3rem) 0 2rem;
 }
 
 .section-openinghours__schedule,
