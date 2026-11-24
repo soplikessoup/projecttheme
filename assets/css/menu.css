@@ -37,6 +37,12 @@
   transition: color 0.3s ease-in-out;
 }
 
+#site-navigation a:focus-visible,
+#site-navigation button:focus-visible {
+  outline: 2px solid var(--theme-color-black);
+  outline-offset: 3px;
+}
+
 #site-navigation .main-menu > li:first-child {
   margin-right: clamp(1.5rem, 3vw, 3rem);
 }

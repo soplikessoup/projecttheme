@@ -56,7 +56,7 @@ $social_links = [
 
     <div class="contact-module__social">
       <?php if ($social_title): ?>
-        <h3 class="contact-module__social-title"><?php echo esc_html($social_title); ?></h3>
+        <h2 class="contact-module__social-title"><?php echo esc_html($social_title); ?></h2>
       <?php endif; ?>
 
       <div class="contact-module__social-links">
