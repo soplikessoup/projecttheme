@@ -33,14 +33,16 @@ $chevron_class = $show_chevron ? ' has-chevron' : '';
     </div>
   <?php endif; ?>
 
-  <div class="section-left-with-chevron__content">
-    <?php if ($title): ?>
-      <h2 class="section-left-with-chevron__title"><?php echo esc_html($title); ?></h2>
-    <?php endif; ?>
+<div class="section-left-with-chevron__content">
+  <?php if ($title): ?>
+    <h2 class="section-left-with-chevron__title"><?php echo esc_html($title); ?></h2>
+  <?php endif; ?>
 
-    <?php if ($subtitle): ?>
-      <p class="section-left-with-chevron__subtitle"><?php echo wp_kses_post($subtitle); ?></p>
-    <?php endif; ?>
+  <?php if ($subtitle): ?>
+    <div class="section-left-with-chevron__subtitle">
+      <?php echo wp_kses_post($subtitle); ?>
+    </div>
+  <?php endif; ?>
 
 
     <?php if ($link_url): ?>

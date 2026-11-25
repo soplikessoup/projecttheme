@@ -144,6 +144,15 @@
   margin-top: 2.45rem;
 }
 
+#menu-footer > li:nth-child(4) {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  margin-top: 4.9rem;
+  justify-self: start;
+  transform: none;
+}
+
 @media (max-width: 767px) {
   #menu-footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -152,6 +161,12 @@
 
   #menu-footer > li:last-child {
     grid-column: auto;
+  }
+
+  #menu-footer > li:nth-child(4) {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
   }
 
   #menu-footer > li > a,

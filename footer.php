@@ -8,7 +8,7 @@
           <a class="footer-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
             <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/rotor_logo.png' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
           </a>
-          <span class="footer-language-switch" aria-label="<?php esc_attr_e( 'Language', 'textdomaintomodify' ); ?>"><span class="is-current">EN</span><span aria-hidden="true">/</span><span>DE</span></span>
+          <span class="footer-language-switch" ><span class="is-current">EN</span><span aria-hidden="true">/</span><span>DE</span></span>
         </div>
         <div class="footer-social">
           <a href="https://www.instagram.com/rotor.contemporary/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
